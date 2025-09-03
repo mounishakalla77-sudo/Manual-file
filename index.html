@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hospital Bill Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+            background-color: #f2f2f2;
+        }
+        h2 {
+            color: #333;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            width: 400px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        #total {
+            font-weight: bold;
+            color: green;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: teal;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: darkcyan;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Hospital Bill Generator</h2>
+
+    <label>Patient Name:</label>
+    <input type="text" id="patientName">
+
+    <label>Room Charges ($):</label>
+    <input type="number" id="roomCharges">
+
+    <label>Medicine Charges ($):</label>
+    <input type="number" id="medicineCharges">
+
+    <label>Lab Test Charges ($):</label>
+    <input type="number" id="testCharges">
+
+    <label>Doctor Fee ($):</label>
+    <input type="number" id="doctorFee">
+
+    <button onclick="calculateBill()">Calculate Total</button>
+
+    <p id="total"></p>
+</div>
+
+<script>
+    function calculateBill() {
+        const name = document.getElementById("patientName").value;
+        const room = parseFloat(document.getElementById("roomCharges").value) || 0;
+        const medicine = parseFloat(document.getElementById("medicineCharges").value) || 0;
+        const test = parseFloat(document.getElementById("testCharges").value) || 0;
+        const doctor = parseFloat(document.getElementById("doctorFee").value) || 0;
+
+        const total = room + medicine + test + doctor;
+
+        document.getElementById("total").innerHTML = 
+            `Total Bill for <strong>${name}</strong> is: $${total.toFixed(2)}`;
+    }
+</script>
+
+</body>
+</html>
